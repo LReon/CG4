@@ -38,7 +38,7 @@ void GameScene::Initialize() {
 	Vector3 position = {0.0f, 0.0f, 0.0f};
 	// パーティクルの初期化
 	//particle_->Initialize(modelParticle_,position);
-
+	
 
 }
 
@@ -61,8 +61,19 @@ void GameScene::Update() {
 	
 		particle->Update();
 	}
+		// パーティクルの移動
+	particles_.remove_if([](Particle* particle) {
+		if (particle->IsFinished()) {
+			delete particle;
+			return true;
+		}
+		else {
+			return false;
+		}
+		});
+	}
 
-}
+
 
 // 描画
 void GameScene::Draw() {
