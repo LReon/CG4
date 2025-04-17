@@ -9,7 +9,7 @@ class Particle {
 public:
 
 	// 初期化
-	void Initialize(Model* model,Vector3 position);
+	void Initialize(Model* model,Vector3 position,Vector3 velocity);
 
 	// 更新
 	void Update();
@@ -30,5 +30,8 @@ private:
 
 	// 色の数値
 	Vector4 color_;
+
+	// 移動量
+	Vector3 velocity_;
 
 };

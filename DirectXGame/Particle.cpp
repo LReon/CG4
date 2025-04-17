@@ -4,7 +4,7 @@
 using namespace MathUtility;
 
 // 初期化
-void Particle::Initialize(Model* model,Vector3 position) {
+void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 
 	// NULLポインタチェック
 	assert(model);
@@ -17,8 +17,13 @@ void Particle::Initialize(Model* model,Vector3 position) {
 	objectColor_.Initialize();
 	color_ = {1, 1, 0, 1};
 
+	// パーティクルの位置
 	worldTransform_.translation_ = position;
+	// 引数として受け取ったデータをメンバ変数に記録する
+	velocity_ = velocity;
 
+	// 大きさ
+	worldTransform_.scale_ = {0.2f, 0.2f, 0.2f};
 }
 
 // 更新
@@ -28,7 +33,9 @@ void Particle::Update() {
 	objectColor_.SetColor(color_);
 
 	// 移動
-	worldTransform_.translation_ += {0.0f, 0.1f, 0.0f};
+	worldTransform_.translation_ += {0.0f + velocity_.x, 0.1f + velocity_.y, 0.0f + velocity_ .z};
+
+	
 
 	//// 行列を定数バッファに転送
 	//worldTransform_.TransferMatrix();
