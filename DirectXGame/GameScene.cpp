@@ -13,7 +13,8 @@ void GameScene::Initialize() {
 	modelParticle_ = Model::CreateSphere(4, 4);
 
 	camera_.Initialize();
-
+	camera_.translation_ = {0.0f, 0.0f, -20.0f};
+	camera_.UpdateMatrix();
 	// パーティクルの生成
 	//particle_ = new Particle();
 
