@@ -4,6 +4,8 @@ std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
 std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 
+using namespace KamataEngine;
+
 using namespace MathUtility;
 
 // 初期化

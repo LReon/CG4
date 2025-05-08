@@ -2,6 +2,7 @@
 #include <cassert>
 #include <algorithm>
 
+using namespace KamataEngine;
 using namespace MathUtility;
 
 // 初期化
@@ -41,7 +42,7 @@ void Particle::Update() {
 	}
 
 	// カウンターを1フレーム分秒数進める
-	counter_ += 1.0f / 10.0f;
+	counter_ += 1.0f / 60.0f;
 
 	// 存続時間の上昇に達したら
 	if (counter_ >= kDuration) {
