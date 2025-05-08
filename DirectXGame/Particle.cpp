@@ -42,7 +42,7 @@ void Particle::Update() {
 	}
 
 	// カウンターを1フレーム分秒数進める
-	counter_ += 1.0f / 60.0f;
+	counter_ += 1.0f / 20.0f;
 
 	// 存続時間の上昇に達したら
 	if (counter_ >= kDuration) {
