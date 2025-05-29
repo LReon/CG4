@@ -60,7 +60,7 @@ void GameScene::Update() {
 	
 
 	if (rand() % 10 == 0) {
-		Vector3 position = {distribution(randomEngine) * 30, distribution(randomEngine) * 30, 0.0f};
+		Vector3 position = {distribution(randomEngine) * 30, distribution(randomEngine) * 20, 0.0f};
 		EffectBorn(position);
 	}
 
@@ -106,22 +106,23 @@ void GameScene::Draw() {
 void GameScene::EffectBorn(Vector3 position) {
 
 	
-	//for (int i = 0; i < 150; i++) {
+	for (int i = 0; i < 5; i++) {
 		// 生成
 		Effect* effect = new Effect();
 		// 位置
 		// 移動量
-		Vector3 rotation = {0, 0, distribution(randomEngine)};
-	    Vector3 scale = {1, distribution(randomEngine), 1};
+		Vector3 rotation = {0, 0, distribution(randomEngine) * 30};
+		float size = distribution(randomEngine) * 5;
+	    //Vector3 scale = {1, distribution(randomEngine), 1};
 		// 初期化
-		effect->Initialize(modelEffect_, position,rotation,scale);
+		effect->Initialize(modelEffect_, position,rotation,size);
 		// リスト追加
 		effects_.push_back(effect);
 
 		Normalize(rotation);
 		rotation *= distribution(randomEngine);
 		rotation *= 0.1f;
-	//}
+	}
 
 
 

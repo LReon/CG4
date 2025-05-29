@@ -6,7 +6,7 @@
 using namespace MathUtility;
 
 // 初期化
-void Effect::Initialize(Model* model, Vector3 position, Vector3 rotation, Vector3 scale) {
+void Effect::Initialize(Model* model, Vector3 position, Vector3 rotation,float size) {
 
 	// NULLポインタチェック
 	assert(model);
@@ -25,10 +25,10 @@ void Effect::Initialize(Model* model, Vector3 position, Vector3 rotation, Vector
 	//velocity_ = velocity;
 
 	// 大きさ
-	//worldTransform_.scale_ = {10.0f, 1.0f, 1.0f};
+	worldTransform_.scale_ = {0.5f, size, 0.5f};
 
 	worldTransform_.rotation_ = rotation;
-	worldTransform_.scale_ = scale;
+	
 }
 
 // 更新
@@ -45,7 +45,7 @@ void Effect::Update() {
 	}
 
 	// カウンターを1フレーム分秒数進める
-	counter_ += 1.0f / 10.0f;
+	counter_ += 1.0f / 60.0f;
 
 	// 存続時間の上昇に達したら
 	if (counter_ >= kDuration) {

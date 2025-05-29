@@ -8,7 +8,7 @@ class Effect {
 
 public:
 	// 初期化
-	void Initialize(Model* model, Vector3 position,Vector3 rotation,Vector3 scale);
+	void Initialize(Model* model, Vector3 position, Vector3 rotation, float size);
 
 	// 更新
 	void Update();
