@@ -1,15 +1,23 @@
 #pragma once
+
 #include "KamataEngine.h"
-#include "MathUtilityForText.h"
 
 using namespace KamataEngine;
 
-class Effect {
+class Particle {
 
 public:
-	void Initialize(Model* model, Camera* camera);
+	// 初期化
+	void Initialize(Model* model, Vector3 position, Vector3 velocity);
+
+	// 更新
 	void Update();
-	void Draw();
+
+	// 描画
+	void Draw(Camera& camera);
+
+	// デスフラグのgetter
+	bool IsFinished() { return isFinished_; }
 
 private:
 	// ワールド変換データ
@@ -17,9 +25,19 @@ private:
 	// モデル
 	Model* model_ = nullptr;
 
-	// テクスチャハンドル
-	//uint32_t textureHandle_ = 0u;
+	// 色変更オブジェクト
+	ObjectColor objectColor_;
 
-	Camera* camera_ = nullptr;
+	// 色の数値
+	Vector4 color_;
 
+	// 移動量
+	Vector3 velocity_;
+
+	// 終了フラグ
+	bool isFinished_ = false;
+	// 経過時間カウント
+	float counter_ = 0.0f;
+	// 存続時間（消滅までの時間）<秒>
+	const float kDuration = 1.0f;
 };
