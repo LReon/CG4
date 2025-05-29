@@ -4,7 +4,7 @@
 
 using namespace KamataEngine;
 
-class Particle {
+class Effect {
 
 public:
 	// 初期化
