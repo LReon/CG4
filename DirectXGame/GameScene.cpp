@@ -10,7 +10,7 @@ using namespace MathUtility;
 void GameScene::Initialize() {
 
 	// 3Dモデルデータの生成
-	modelParticle_ = Model::CreateSphere(4, 4);
+	modelEffect_ = Model::CreateSphere(2, 2);
 
 	camera_.Initialize();
 	camera_.translation_ = {0.0f, 0.0f, -20.0f};
@@ -20,15 +20,15 @@ void GameScene::Initialize() {
 
 	for (int i = 0; i < 150; i++) {
 		// 生成
-		Particle* particle = new Particle();
+		Effect* effect = new Effect();
 		// 位置
 		Vector3 position = {0.0f, 0.0f, 0.0f};
 		// 移動量
 		Vector3 velocity = {distribution(randomEngine), distribution(randomEngine), 0};
 		// 初期化
-		particle->Initialize(modelParticle_, position,velocity);
+		effect->Initialize(modelEffect_, position,velocity);
 		// リスト追加
-		particles_.push_back(particle);
+		effects_.push_back(effect);
 	
 		Normalize(velocity);
 		velocity *= distribution(randomEngine);
@@ -45,27 +45,27 @@ void GameScene::Initialize() {
 
 GameScene::~GameScene() {
 
-	delete modelParticle_;
+	delete modelEffect_;
 	//delete particle_;
 	// パーティクルの解放
-	for (Particle* particle : particles_) {
-		delete particle;
+	for (Effect* effect : effects_) {
+		delete effect;
 	}
-	particles_.clear();
+	effects_.clear();
 }
 
 // 更新
 void GameScene::Update() {
 
 	// パーティクルの更新
-	for (Particle* particle : particles_) {
+	for (Effect* effect : effects_) {
 	
-		particle->Update();
+		effect->Update();
 	}
 		// パーティクルの移動
-	particles_.remove_if([](Particle* particle) {
-		if (particle->IsFinished()) {
-			delete particle;
+	effects_.remove_if([](Effect* effect) {
+		if (effect->IsFinished()) {
+			delete effect;
 			return true;
 		}
 		else {
@@ -86,9 +86,9 @@ void GameScene::Draw() {
 	Model::PreDraw(dxCommon->GetCommandList());
 
 	// パーティクル描画
-	for (Particle* particle : particles_) {
+	for (Effect* effect : effects_) {
 
-		particle->Draw(camera_);
+		effect->Draw(camera_);
 	}
 
 	// 3Dモデル描画後処理
