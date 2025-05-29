@@ -18,22 +18,22 @@ void GameScene::Initialize() {
 	// パーティクルの生成
 	//particle_ = new Particle();
 
-	for (int i = 0; i < 150; i++) {
-		// 生成
-		Effect* effect = new Effect();
-		// 位置
-		Vector3 position = {0.0f, 0.0f, 0.0f};
-		// 移動量
-		Vector3 velocity = {distribution(randomEngine), distribution(randomEngine), 0};
-		// 初期化
-		effect->Initialize(modelEffect_, position,velocity);
-		// リスト追加
-		effects_.push_back(effect);
-	
-		Normalize(velocity);
-		velocity *= distribution(randomEngine);
-		velocity *= 0.1f;
-	}
+	//for (int i = 0; i < 150; i++) {
+	//	// 生成
+	//	Effect* effect = new Effect();
+	//	// 位置
+	//	Vector3 position = {0.0f, 0.0f, 0.0f};
+	//	// 移動量
+	//	Vector3 velocity = {distribution(randomEngine), distribution(randomEngine), 0};
+	//	// 初期化
+	//	effect->Initialize(modelEffect_, position,velocity);
+	//	// リスト追加
+	//	effects_.push_back(effect);
+	//
+	//	Normalize(velocity);
+	//	velocity *= distribution(randomEngine);
+	//	velocity *= 0.1f;
+	//}
 
 	// 位置
 	Vector3 position = {0.0f, 0.0f, 0.0f};
@@ -56,6 +56,13 @@ GameScene::~GameScene() {
 
 // 更新
 void GameScene::Update() {
+
+	
+
+	if (rand() % 10 == 0) {
+		Vector3 position = {distribution(randomEngine) * 30, distribution(randomEngine) * 30, 0.0f};
+		EffectBorn(position);
+	}
 
 	// パーティクルの更新
 	for (Effect* effect : effects_) {
@@ -93,5 +100,29 @@ void GameScene::Draw() {
 
 	// 3Dモデル描画後処理
 	Model::PostDraw();
+
+}
+
+void GameScene::EffectBorn(Vector3 position) {
+
+	
+	//for (int i = 0; i < 150; i++) {
+		// 生成
+		Effect* effect = new Effect();
+		// 位置
+		// 移動量
+		Vector3 rotation = {0, 0, distribution(randomEngine)};
+	    Vector3 scale = {1, distribution(randomEngine), 1};
+		// 初期化
+		effect->Initialize(modelEffect_, position,rotation,scale);
+		// リスト追加
+		effects_.push_back(effect);
+
+		Normalize(rotation);
+		rotation *= distribution(randomEngine);
+		rotation *= 0.1f;
+	//}
+
+
 
 }
