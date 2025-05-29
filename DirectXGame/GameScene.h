@@ -1,4 +1,5 @@
 #pragma once
+#include "Effect.h"
 #include "KamataEngine.h"
 
 using namespace KamataEngine;
@@ -14,5 +15,17 @@ public:
 
 	// 描画
 	void Draw();
+
+	Effect* effect_ = nullptr; // エフェクトクラスのポインタ
+	//Camera camera_;
+	Model* modelEffectResource_ = nullptr;
+
+private:
+	// ワールドトランスフォーム
+	WorldTransform worldTransform_;
+	// ビュープロジェクション
+	Camera camera_;
+
+	Model* effectModel_ = nullptr; // エフェクトモデル
 
 };
