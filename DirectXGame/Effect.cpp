@@ -17,7 +17,7 @@ void Effect::Initialize(Model* model, Vector3 position, Vector3 rotation,float s
 
 	// 色の設定
 	objectColor_.Initialize();
-	color_ = {1, 1, 0, 1};
+	color_ = {0, 0, 0, 1};
 
 	// パーティクルの位置
 	worldTransform_.translation_ = position;
@@ -35,6 +35,7 @@ void Effect::Initialize(Model* model, Vector3 position, Vector3 rotation,float s
 void Effect::Update() {
 
 	// 色変更オブジェクトに色の数値を設定する
+	color_ = {float(rand() % 5), float(rand() % 5), float(rand() % 5), 1};
 	objectColor_.SetColor(color_);
 
 	// 移動
@@ -45,7 +46,7 @@ void Effect::Update() {
 	}
 
 	// カウンターを1フレーム分秒数進める
-	counter_ += 1.0f / 60.0f;
+	counter_ += 1.0f / 10.0f;
 
 	// 存続時間の上昇に達したら
 	if (counter_ >= kDuration) {
@@ -59,6 +60,10 @@ void Effect::Update() {
 
 	//// 行列を定数バッファに転送
 	// worldTransform_.TransferMatrix();
+
+	worldTransform_.rotation_.z -= 0.1f;
+	worldTransform_.translation_.x += float(rand() % 1);
+	worldTransform_.translation_.y += float(rand() % 1);
 
 	// 行列を更新
 	worldTransform_.UpdateMatrix();

@@ -60,7 +60,7 @@ void GameScene::Update() {
 	
 
 	if (rand() % 10 == 0) {
-		Vector3 position = {distribution(randomEngine) * 30, distribution(randomEngine) * 20, 0.0f};
+		Vector3 position = {distribution(randomEngine) * 10, distribution(randomEngine) * 20, 0.0f};
 		EffectBorn(position);
 	}
 
