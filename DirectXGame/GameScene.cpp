@@ -4,7 +4,7 @@
 void GameScene::Initialize() {
 	
 	Model2::StaticInitialize();
-	//model2_ = Model2::CreateSphere(4, 4);
+	model2_ = Model2::CreateSphere(4, 4);
 	camera_.Initialize();
 	worldTransform_.Initialize();
 }
