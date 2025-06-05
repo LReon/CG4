@@ -131,6 +131,47 @@ Model2* Model2::CreateSphere(uint32_t divisionVertial, uint32_t divisionHorizont
 	return instance;
 }
 
+Model2* Model2::CreateSquare() { 
+
+	// メモリ確保
+	Model2* instance = new Model2;
+	std::vector<Mesh::VertexPosNormalUv> vertices;
+	std::vector<uint32_t> indices;
+
+	// 頂点数
+	const uint32_t kNumVertices = 4;
+	// インデックス数
+	const uint32_t kNumIndices = 6;
+	vertices.resize(kNumVertices);
+	indices.resize(kNumIndices);
+
+	// 頂点座標設定
+	vertices[0].pos = {-0.5f, 0.0f, -0.5f}; // 左下
+	vertices[0].uv = {0.0f, 1.0f};          // 左下UV
+	vertices[0].normal = {0.0f, 1.0f, 0.0f}; // 上向き法線ベクトル
+	vertices[1].pos = {-0.5f, 0.0f, 0.5f};   // 左上
+	vertices[1].uv = {0.0f, 0.0f};           // 左上UV
+	vertices[1].normal = {0.0f, 1.0f, 0.0f}; // 上向き法線ベクトル
+	vertices[2].pos = {0.5f, 0.0f, -0.5f};   // 右下
+	vertices[2].uv = {1.0f, 1.0f};           // 右下UV
+	vertices[2].normal = {0.0f, 1.0f, 0.0f}; // 上向き法線ベクトル
+	vertices[3].pos = {0.5f, 0.0f, 0.5f};    // 右上
+	vertices[3].uv = {1.0f, 0.0f};           // 右上UV
+	vertices[3].normal = {0.0f, 1.0f, 0.0f}; // 上向き法線ベクトル
+
+	// インデックス設定
+	indices[0] = 0; // 左下
+	indices[1] = 1; // 左上
+	indices[2] = 2; // 右下
+	indices[3] = 2; // 右下
+	indices[4] = 1; // 左上
+	indices[5] = 3; // 右上
+
+	instance->InitializeFromVertices(vertices, indices);
+	return instance;
+
+}
+
 void Model2::PreDraw(ID3D12GraphicsCommandList* commandList) { ModelCommon2::GetInstance()->PreDraw(commandList); }
 
 void Model2::PostDraw() { ModelCommon2::GetInstance()->PostDraw(); }

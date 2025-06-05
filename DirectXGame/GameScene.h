@@ -23,7 +23,7 @@ private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;
 	// モデル
-	Model2* model2_ = nullptr;
+	Model2* modelSquare_ = nullptr;
 
 	Camera camera_;
 
