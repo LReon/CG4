@@ -25,6 +25,8 @@ private:
 	// モデル
 	Model2* modelSquare_ = nullptr;
 
+	uint32_t textureHandle_ = 0;
+
 	Camera camera_;
 
 };

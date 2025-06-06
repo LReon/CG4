@@ -131,7 +131,7 @@ Model2* Model2::CreateSphere(uint32_t divisionVertial, uint32_t divisionHorizont
 	return instance;
 }
 
-Model2* Model2::CreateSquare() { 
+Model2* Model2::CreateSquare(int max) { 
 
 	// メモリ確保
 	Model2* instance = new Model2;
@@ -141,34 +141,38 @@ Model2* Model2::CreateSquare() {
 
 
 	// 頂点数
-	const uint32_t kNumVertices = 4;
+	const uint32_t kNumVertices = 4 * max;
 	// インデックス数
-	const uint32_t kNumIndices = 6;
+	const uint32_t kNumIndices = 6 * max;
 	vertices.resize(kNumVertices);
 	indices.resize(kNumIndices);
 
-	// 頂点座標設定
-	vertices[0].pos = {-10.0f, -10.0f, 0.0f}; // 左下
-	vertices[0].uv = {0.0f, 1.0f};          // 左下UV
-	vertices[0].normal = {0.0f, 0.0f, 1.0f}; // 上向き法線ベクトル
-	vertices[1].pos = {-10.0f, 10.0f, 0.0f};   // 左上
-	vertices[1].uv = {0.0f, 0.0f};           // 左上UV
-	vertices[1].normal = {0.0f, 0.0f, 1.0f}; // 上向き法線ベクトル
-	vertices[2].pos = {10.0f, -10.0f, 0.0f};   // 右下
-	vertices[2].uv = {1.0f, 1.0f};           // 右下UV
-	vertices[2].normal = {0.0f, 0.0f, 1.0f}; // 上向き法線ベクトル
-	vertices[3].pos = {10.0f, 10.0f, 0.0f};    // 右上
-	vertices[3].uv = {1.0f, 0.0f};           // 右上UV
-	vertices[3].normal = {0.0f, 0.0f, 1.0f}; // 上向き法線ベクトル
+	for (int i = 0; i < max; i++) {
 
-	// インデックス設定
-	indices[0] = 0; // 左下
-	indices[1] = 1; // 左上
-	indices[2] = 2; // 右下
-	indices[3] = 1; // 右下
-	indices[4] = 3; // 左上
-	indices[5] = 2; // 右上
+		int index = i * 4; // 1つの四角形の頂点インデックス開始位置
+		// 頂点座標設定
+		vertices[0 + index].pos = {-5.0f, -5.0f, 0.0f}; // 左下
+		vertices[0 + index].uv = {0.0f, 1.0f};               // 左下UV
+		vertices[0 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
+		vertices[1 + index].pos = {-5.0f, 5.0f, 0.0f};  // 左上
+		vertices[1 + index].uv = {0.0f, 0.0f};               // 左上UV
+		vertices[1 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
+		vertices[2 + index].pos = {5.0f, -5.0f, 0.0f};  // 右下
+		vertices[2 + index].uv = {1.0f, 1.0f};               // 右下UV
+		vertices[2 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
+		vertices[3 + index].pos = {5.0f, 5.0f, 0.0f};   // 右上
+		vertices[3 + index].uv = {1.0f, 0.0f};               // 右上UV
+		vertices[3 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
 
+		int offset = i * 6; // インデックスオフセット
+		// インデックス設定
+		indices[0 + offset] = 0; // 左下
+		indices[1 + offset] = 1; // 左上
+		indices[2 + offset] = 2; // 右下
+		indices[3 + offset] = 1; // 右下
+		indices[4 + offset] = 3; // 左上
+		indices[5 + offset] = 2; // 右上
+	}
 	instance->InitializeFromVertices(vertices, indices);
 	return instance;
 

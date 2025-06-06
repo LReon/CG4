@@ -2,9 +2,13 @@
 
 // 初期化
 void GameScene::Initialize() {
-	
+
 	Model2::StaticInitialize();
-	modelSquare_ = Model2::CreateSquare();
+
+	textureHandle_ = TextureManager::Load("uvChecker.png");
+	
+	modelSquare_ = Model2::CreateSquare(5);
+	
 	camera_.Initialize();
 	worldTransform_.Initialize();
 }
@@ -19,8 +23,10 @@ void GameScene::Draw() {
 	// 3Dモデル描画前処理
 	Model2::PreDraw(dxCommon->GetCommandList());
 
-	modelSquare_->Draw(worldTransform_,camera_);
 
+
+		modelSquare_->Draw(worldTransform_, camera_,textureHandle_);
+	
 	// 3Dモデル描画後処理
 	Model2::PostDraw();
 }
