@@ -10,6 +10,9 @@ void GameScene::Initialize() {
 	modelSquare_ = Model2::CreateSquare(5);
 	
 	camera_.Initialize();
+	camera_.translation_.x = 20.0f;
+	camera_.UpdateMatrix();
+	
 	worldTransform_.Initialize();
 }
 

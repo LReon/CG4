@@ -149,29 +149,30 @@ Model2* Model2::CreateSquare(int max) {
 
 	for (int i = 0; i < max; i++) {
 
+		int interval = 10;  // 四角形の間隔
 		int index = i * 4; // 1つの四角形の頂点インデックス開始位置
 		// 頂点座標設定
-		vertices[0 + index].pos = {-5.0f, -5.0f, 0.0f}; // 左下
+		vertices[0 + index].pos = {-5.0f + i * interval, -5.0f, 0.0f}; // 左下
 		vertices[0 + index].uv = {0.0f, 1.0f};               // 左下UV
 		vertices[0 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
-		vertices[1 + index].pos = {-5.0f, 5.0f, 0.0f};  // 左上
+		vertices[1 + index].pos = {-5.0f + i * interval, 5.0f, 0.0f}; // 左上
 		vertices[1 + index].uv = {0.0f, 0.0f};               // 左上UV
 		vertices[1 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
-		vertices[2 + index].pos = {5.0f, -5.0f, 0.0f};  // 右下
+		vertices[2 + index].pos = {5.0f + i * interval, -5.0f, 0.0f}; // 右下
 		vertices[2 + index].uv = {1.0f, 1.0f};               // 右下UV
 		vertices[2 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
-		vertices[3 + index].pos = {5.0f, 5.0f, 0.0f};   // 右上
+		vertices[3 + index].pos = {5.0f + i * interval, 5.0f, 0.0f}; // 右上
 		vertices[3 + index].uv = {1.0f, 0.0f};               // 右上UV
 		vertices[3 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
 
 		int offset = i * 6; // インデックスオフセット
 		// インデックス設定
-		indices[0 + offset] = 0; // 左下
-		indices[1 + offset] = 1; // 左上
-		indices[2 + offset] = 2; // 右下
-		indices[3 + offset] = 1; // 右下
-		indices[4 + offset] = 3; // 左上
-		indices[5 + offset] = 2; // 右上
+		indices[0 + offset] = 0 + index; // 左下
+		indices[1 + offset] = 1 + index; // 左上
+		indices[2 + offset] = 2 + index; // 右下
+		indices[3 + offset] = 1 + index; // 右下
+		indices[4 + offset] = 3 + index; // 左上
+		indices[5 + offset] = 2 + index; // 右上
 	}
 	instance->InitializeFromVertices(vertices, indices);
 	return instance;
