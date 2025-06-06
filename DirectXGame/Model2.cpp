@@ -138,6 +138,8 @@ Model2* Model2::CreateSquare() {
 	std::vector<Mesh::VertexPosNormalUv> vertices;
 	std::vector<uint32_t> indices;
 
+
+
 	// 頂点数
 	const uint32_t kNumVertices = 4;
 	// インデックス数
