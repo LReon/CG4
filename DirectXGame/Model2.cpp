@@ -146,26 +146,26 @@ Model2* Model2::CreateSquare() {
 	indices.resize(kNumIndices);
 
 	// 頂点座標設定
-	vertices[0].pos = {-0.5f, 0.0f, -0.5f}; // 左下
+	vertices[0].pos = {0.0f, 360.0f, 0.0f}; // 左下
 	vertices[0].uv = {0.0f, 1.0f};          // 左下UV
-	vertices[0].normal = {0.0f, 1.0f, 0.0f}; // 上向き法線ベクトル
-	vertices[1].pos = {-0.5f, 0.0f, 0.5f};   // 左上
+	vertices[0].normal = {0.0f, 0.0f, 1.0f}; // 上向き法線ベクトル
+	vertices[1].pos = {0.0f, 0.0f, 0.0f};   // 左上
 	vertices[1].uv = {0.0f, 0.0f};           // 左上UV
-	vertices[1].normal = {0.0f, 1.0f, 0.0f}; // 上向き法線ベクトル
-	vertices[2].pos = {0.5f, 0.0f, -0.5f};   // 右下
+	vertices[1].normal = {0.0f, 0.0f, 1.0f}; // 上向き法線ベクトル
+	vertices[2].pos = {640.0f, 360.0f, 0.0f};   // 右下
 	vertices[2].uv = {1.0f, 1.0f};           // 右下UV
-	vertices[2].normal = {0.0f, 1.0f, 0.0f}; // 上向き法線ベクトル
-	vertices[3].pos = {0.5f, 0.0f, 0.5f};    // 右上
+	vertices[2].normal = {0.0f, 0.0f, 1.0f}; // 上向き法線ベクトル
+	vertices[3].pos = {640.0f, 0.0f, 0.0f};    // 右上
 	vertices[3].uv = {1.0f, 0.0f};           // 右上UV
-	vertices[3].normal = {0.0f, 1.0f, 0.0f}; // 上向き法線ベクトル
+	vertices[3].normal = {0.0f, 0.0f, 1.0f}; // 上向き法線ベクトル
 
 	// インデックス設定
 	indices[0] = 0; // 左下
 	indices[1] = 1; // 左上
 	indices[2] = 2; // 右下
-	indices[3] = 2; // 右下
-	indices[4] = 1; // 左上
-	indices[5] = 3; // 右上
+	indices[3] = 1; // 右下
+	indices[4] = 3; // 左上
+	indices[5] = 2; // 右上
 
 	instance->InitializeFromVertices(vertices, indices);
 	return instance;
