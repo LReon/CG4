@@ -7,13 +7,15 @@ void GameScene::Initialize() {
 
 	textureHandle_ = TextureManager::Load("uvChecker.png");
 	
-	modelSquare_ = Model2::CreateSquare(5);
+	modelSquare_ = Model2::CreateSquare(50);
 	
 	camera_.Initialize();
-	camera_.translation_.x = 20.0f;
+	camera_.translation_.z = -10.0f;
 	camera_.UpdateMatrix();
 	
 	worldTransform_.Initialize();
+	
+	
 }
 
 // 更新

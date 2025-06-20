@@ -29,7 +29,10 @@ const char* Model2::kBaseDirectory = "Resources/";
 const char* Model2::kDefaultModelName = "cube";
 ModelCommon2* ModelCommon2::sInstance_ = nullptr;
 
-void Model2::StaticInitialize() { ModelCommon2::GetInstance()->Initialize(); }
+void Model2::StaticInitialize() { 
+	ModelCommon2::GetInstance()->Initialize(); 
+
+}
 
 void Model2::StaticFinalize() { ModelCommon2::GetInstance()->Terminate(); }
 
@@ -147,21 +150,24 @@ Model2* Model2::CreateSquare(int max) {
 	vertices.resize(kNumVertices);
 	indices.resize(kNumIndices);
 
+
 	for (int i = 0; i < max; i++) {
 
-		int interval = 10;  // 四角形の間隔
+		float rad = 2.0f * 3.14f * (float)i / float(max);
+		float radNext = 2.0f * 3.14f * (float)(i + 1.0f) / float(max);
+		//int interval = 10;  // 四角形の間隔
 		int index = i * 4; // 1つの四角形の頂点インデックス開始位置
 		// 頂点座標設定
-		vertices[0 + index].pos = {-5.0f + i * interval, -5.0f, 0.0f}; // 左下
+		vertices[0 + index].pos = {-cos(rad) * 2, sin(rad) * 2, 0.0f}; // 左下
 		vertices[0 + index].uv = {0.0f, 1.0f};               // 左下UV
 		vertices[0 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
-		vertices[1 + index].pos = {-5.0f + i * interval, 5.0f, 0.0f}; // 左上
+		vertices[1 + index].pos = {-cos(rad) * 3, sin(rad) * 3, 0.0f}; // 左上
 		vertices[1 + index].uv = {0.0f, 0.0f};               // 左上UV
 		vertices[1 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
-		vertices[2 + index].pos = {5.0f + i * interval, -5.0f, 0.0f}; // 右下
+		vertices[2 + index].pos = {-cos(radNext) * 2 , sin(radNext) * 2, 0.0f}; // 右下
 		vertices[2 + index].uv = {1.0f, 1.0f};               // 右下UV
 		vertices[2 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
-		vertices[3 + index].pos = {5.0f + i * interval, 5.0f, 0.0f}; // 右上
+		vertices[3 + index].pos = {-cos(radNext) * 3 , sin(radNext) * 3, 0.0f}; // 右上
 		vertices[3 + index].uv = {1.0f, 0.0f};               // 右上UV
 		vertices[3 + index].normal = {0.0f, 0.0f, 1.0f};     // 上向き法線ベクトル
 
