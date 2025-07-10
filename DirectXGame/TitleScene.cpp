@@ -9,10 +9,10 @@ void TitleScene::Initialize() {
 
 // 更新
 void TitleScene::Update() { 
-	/*count += 1.0f;
+	count += 1.0f;
 	if (count > countMax) {
 		count = 0.0f;
-	}*/
+	}
 }
 
 // 描画
@@ -21,9 +21,9 @@ void TitleScene::Draw() {
 	DirectXCommon* dxCommon_ = DirectXCommon::GetInstance();
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 	Sprite::PreDraw(commandList);
-	//if (count >= 10.0f) {
+	if (count >= 10.0f) {
 		sprite_->Draw();
-	//}
+	}
 	
 	Sprite::PostDraw();
 }
