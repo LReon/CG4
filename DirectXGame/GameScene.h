@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Model2.h"
+#include "TitleScene.h"
 
 using namespace KamataEngine;
 
@@ -19,6 +20,8 @@ public:
 	// 解放
 	~GameScene();
 
+	
+
 private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;
@@ -28,5 +31,7 @@ private:
 	uint32_t textureHandle_ = 0;
 
 	Camera camera_;
+
+	TitleScene titleScene_;
 
 };
