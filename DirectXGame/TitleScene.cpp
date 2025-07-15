@@ -1,18 +1,32 @@
 #include "TitleScene.h"
 
 void TitleScene::Initialize() {
-	// テクスチャの読み込み
-	textureHandle_ = TextureManager::Load("title.png");
-	// スプライトの生成
-	sprite_ = Sprite::Create(textureHandle_, { 0, 0 });
+	// 内側背景テクスチャの読み込み
+	insideTextureHandle_ = TextureManager::Load("backGround/inside.png");
+	// 内側背景スプライトの生成
+	insideSprite_ = Sprite::Create(insideTextureHandle_, { 0, 0 });
+	// 外側背景テクスチャの読み込み
+	outsideTextureHandle_ = TextureManager::Load("backGround/outside.png");
+	// 外側背景スプライトの生成
+	outsideSprite_ = Sprite::Create(outsideTextureHandle_, {1280, 0});
+
 }
 
 // 更新
 void TitleScene::Update() { 
-	count += 1.0f;
-	if (count > countMax) {
-		count = 0.0f;
+	Vector2 insidePosition = insideSprite_->GetPosition();
+	insidePosition.x -= 2.0f;
+	if (insidePosition.x <= -1280.0f) {
+		insidePosition.x = 1280.0f;
 	}
+	insideSprite_->SetPosition(insidePosition);
+
+	Vector2 outsidePosition = outsideSprite_->GetPosition();
+	outsidePosition.x -= 2.0f;
+	if (outsidePosition.x <= -1280.0f) {
+		outsidePosition.x = 1280.0f;
+	}
+	outsideSprite_->SetPosition(outsidePosition);
 }
 
 // 描画
@@ -21,9 +35,9 @@ void TitleScene::Draw() {
 	DirectXCommon* dxCommon_ = DirectXCommon::GetInstance();
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 	Sprite::PreDraw(commandList);
-	if (count >= 10.0f) {
-		sprite_->Draw();
-	}
+	
+		insideSprite_->Draw();
+		outsideSprite_->Draw();
 	
 	Sprite::PostDraw();
 }
