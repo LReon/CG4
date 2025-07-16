@@ -10,6 +10,7 @@ void GameScene::Initialize() {
 	modelSquare_ = Model2::CreateSquare(50);
 
 	titleScene_.Initialize();
+	stage_.Initialize();
 	
 	camera_.Initialize();
 	camera_.translation_.z = -10.0f;
@@ -23,7 +24,8 @@ void GameScene::Initialize() {
 // 更新
 void GameScene::Update() {
 
-	titleScene_.Update();
+	//titleScene_.Update();
+	stage_.Update();
 
 }
 
@@ -35,7 +37,7 @@ void GameScene::Draw() {
 	ID3D12GraphicsCommandList* commandList = dxCommon->GetCommandList();
 	// スプライト描画前処理
 	Sprite::PreDraw(commandList);
-	titleScene_.Draw();
+	stage_.Draw();
 
 	// 3Dモデル描画前処理
 	Model2::PreDraw(dxCommon->GetCommandList());
