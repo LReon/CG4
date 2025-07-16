@@ -1,7 +1,5 @@
 #include "TitleScene.h"
 
-#include "TitleScene.h"
-
 void TitleScene::Initialize() {
 	// テクスチャの読み込み
 	textureHandle_ = TextureManager::Load("title.png");
