@@ -2,6 +2,7 @@
 #include "KamataEngine.h"
 #include "Model2.h"
 #include "TitleScene.h"
+#include "Stage.h"
 #include "Player.h"
 
 using namespace KamataEngine;
@@ -34,6 +35,8 @@ private:
 	Camera* camera_;
 
 	TitleScene titleScene_;
+
+	Stage stage_;
 
 	Player* player_;
 
