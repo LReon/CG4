@@ -2,6 +2,7 @@
 #include "KamataEngine.h"
 #include "Model2.h"
 #include "TitleScene.h"
+#include "Player.h"
 
 using namespace KamataEngine;
 
@@ -30,8 +31,10 @@ private:
 
 	uint32_t textureHandle_ = 0;
 
-	Camera camera_;
+	Camera* camera_;
 
 	TitleScene titleScene_;
+
+	Player* player_;
 
 };

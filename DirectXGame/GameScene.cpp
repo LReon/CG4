@@ -10,11 +10,15 @@ void GameScene::Initialize() {
 	modelSquare_ = Model2::CreateSquare(50);
 
 	titleScene_.Initialize();
-	
-	camera_.Initialize();
-	camera_.translation_.z = -10.0f;
-	camera_.UpdateMatrix();
-	
+
+	camera_ = new Camera();
+	camera_->Initialize();
+	camera_->translation_.z = -10.0f;
+	camera_->UpdateMatrix();
+	player_ = new Player();
+
+	player_->Initialize(camera_);
+
 	worldTransform_.Initialize();
 	
 	
@@ -24,32 +28,29 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 
 	titleScene_.Update();
-
+	player_->Update();
 }
 
 // 描画
 void GameScene::Draw() { 
-	// DirectXCommon インスタンスの取得
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
-	// コマンドリストの取得
-	ID3D12GraphicsCommandList* commandList = dxCommon->GetCommandList();
-	// スプライト描画前処理
-	Sprite::PreDraw(commandList);
+	Sprite::PreDraw(dxCommon->GetCommandList());
 	titleScene_.Draw();
+	Sprite::PostDraw();
 
-	// 3Dモデル描画前処理
-	Model2::PreDraw(dxCommon->GetCommandList());
+	dxCommon->ClearDepthBuffer();
+	Model::PreDraw(dxCommon->GetCommandList());
+	player_->Draw();
+	Model::PostDraw();
 
+	Sprite::PreDraw(dxCommon->GetCommandList());
+	Sprite::PostDraw();
 
-
-		//modelSquare_->Draw(worldTransform_, camera_,textureHandle_);
-	
-	// 3Dモデル描画後処理
-	Model2::PostDraw();
 }
 
 GameScene::~GameScene() {
 
 	Model2::StaticFinalize();
+	delete camera_;
 
 }
