@@ -22,7 +22,8 @@ void GameScene::Initialize() {
 
 	worldTransform_.Initialize();
 	
-	
+	graph_.Initialize();
+
 }
 
 // 更新
@@ -31,6 +32,7 @@ void GameScene::Update() {
 	//titleScene_.Update();
 	stage_.Update();
 	player_->Update();
+	graph_.Update();
 }
 
 // 描画
@@ -47,6 +49,7 @@ void GameScene::Draw() {
 	Model::PostDraw();
 
 	Sprite::PreDraw(dxCommon->GetCommandList());
+	graph_.Draw();
 	Sprite::PostDraw();
 
 }

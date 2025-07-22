@@ -4,6 +4,7 @@
 #include "TitleScene.h"
 #include "Stage.h"
 #include "Player.h"
+#include "Graph.h"
 
 using namespace KamataEngine;
 
@@ -39,5 +40,7 @@ private:
 	Stage stage_;
 
 	Player* player_;
+
+	Graph graph_;
 
 };
