@@ -18,7 +18,10 @@ void Graph::Initialize() {
 
 void Graph::Update() { 
 	Vector2 spriteSize = {greenSprite_->GetSize()}; 
-	spriteSize.x -= 0.1f;
+	spriteSize.x -= 1.0f;
+	if (spriteSize.x < 0) {
+		spriteSize.x = 0;
+	}
 	greenSprite_->SetSize(spriteSize);
 }
 

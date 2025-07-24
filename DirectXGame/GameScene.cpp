@@ -24,6 +24,10 @@ void GameScene::Initialize() {
 	
 	graph_.Initialize();
 
+
+	number_ = new Number();
+	number_->Initialize();
+
 }
 
 // 更新
@@ -33,6 +37,7 @@ void GameScene::Update() {
 	stage_.Update();
 	player_->Update();
 	graph_.Update();
+	number_->Update();
 }
 
 // 描画
@@ -41,16 +46,17 @@ void GameScene::Draw() {
 	Sprite::PreDraw(dxCommon->GetCommandList());
 	//titleScene_.Draw();
 	stage_.Draw();
+	graph_.Draw();
+	number_->Draw();
 	Sprite::PostDraw();
+
+	
 
 	dxCommon->ClearDepthBuffer();
 	Model::PreDraw(dxCommon->GetCommandList());
 	player_->Draw();
 	Model::PostDraw();
 
-	Sprite::PreDraw(dxCommon->GetCommandList());
-	graph_.Draw();
-	Sprite::PostDraw();
 
 }
 

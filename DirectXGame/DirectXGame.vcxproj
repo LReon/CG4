@@ -110,6 +110,7 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model2.cpp" />
+    <ClCompile Include="Number.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Model2.h" />
+    <ClInclude Include="Number.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="TitleScene.h" />
