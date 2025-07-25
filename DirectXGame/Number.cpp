@@ -14,10 +14,14 @@ void Number::Update() {
 	for (int i = 0; i < 5; i++) {
 		sprite[i]->SetTextureRect({0,0}, size);
 	}
-	hp -= 1;
+	if (Input::GetInstance()->PushKey(DIK_SPACE)) {
+		hp = 60000;
+	}
+	hp -= 200;
 	if (hp < 0) {
 		hp = 0;
 	}
+	
 }
 
 void Number::Draw() {

@@ -10,8 +10,8 @@ void Graph::Initialize() {
 
 	redSprite_->SetPosition({100, 100});
 	greenSprite_->SetPosition({100, 100});
-	redSprite_->SetSize({320, 20});
-	greenSprite_->SetSize({320, 20});
+	redSprite_->SetSize({300, 20});
+	greenSprite_->SetSize({300, 20});
 	redSprite_->SetColor({1, 0, 0, 0.8f});
 	greenSprite_->SetColor({0, 1, 0, 0.8f});
 }
@@ -21,6 +21,9 @@ void Graph::Update() {
 	spriteSize.x -= 1.0f;
 	if (spriteSize.x < 0) {
 		spriteSize.x = 0;
+	}
+	if (Input::GetInstance()->PushKey(DIK_SPACE)) {
+		spriteSize.x = 300.0f;
 	}
 	greenSprite_->SetSize(spriteSize);
 }

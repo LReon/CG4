@@ -11,7 +11,7 @@ public:
 	Vector2 size = {32.0f, 64.0f};
 	int32_t digit = 10000;
 	int number = 0;
-	int hp = 10000;
+	int hp = 60000;
 	
 
 	void Update();
