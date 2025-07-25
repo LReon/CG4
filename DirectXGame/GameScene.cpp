@@ -22,7 +22,8 @@ void GameScene::Initialize() {
 
 	worldTransform_.Initialize();
 	
-	graph_.Initialize();
+	graph_ = new Graph();
+	graph_->Initialize();
 
 
 	number_ = new Number();
@@ -36,7 +37,7 @@ void GameScene::Update() {
 	//titleScene_.Update();
 	stage_.Update();
 	player_->Update();
-	graph_.Update();
+	graph_->Update();
 	number_->Update();
 }
 
@@ -46,7 +47,7 @@ void GameScene::Draw() {
 	Sprite::PreDraw(dxCommon->GetCommandList());
 	//titleScene_.Draw();
 	stage_.Draw();
-	graph_.Draw();
+	graph_->Draw();
 	number_->Draw();
 	Sprite::PostDraw();
 

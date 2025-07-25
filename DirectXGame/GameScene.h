@@ -42,7 +42,7 @@ private:
 
 	Player* player_;
 
-	Graph graph_;
+	Graph* graph_;
 
 	Number* number_;
 };
